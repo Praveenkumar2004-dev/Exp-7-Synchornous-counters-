@@ -46,43 +46,70 @@ This type of counter is normally referred to as a Down Counter, (CTD). In a bina
 
 4-bit Count Down Counter
 ### Procedure
-/* write all the steps invloved */
+Connect the supply (+5V) to the circuit. Switch ON the main switch. If the output is 1, then the bulb glows.
 
 
 
 ### PROGRAM 
-/*
+```
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: PRAVEENKUMAR S
+RegisterNumber: 212222230108 
+```
 
+## UPCOUNTER:
+```
+module upcounter (clk,A);
+input clk;
+output reg [0:3]A;
+always@ (posedge clk)
+begin
+	A[0]=((A[1])&(A[2])&(A[3]))^A[0];
+	A[1]=((A[2])&(A[3]))^A[1];
+	A[2]=((A[3]))^A[2];
+	A[3]=1^A[3];
+end
+endmodule
+```
 
-
-
-
+## DOWNCOUNTER:
+```
+module downcounter (clk,A);
+input clk;
+output reg [0:3]A;
+always@ (posedge clk)
+begin
+	A[0]=((~A[1])&(~A[2])&(~A[3]))^A[0];
+	A[1]=((~A[2])&(~A[3]))^A[1];
+	A[2]=((~A[3]))^A[2];
+	A[3]=1^A[3];
+end
+endmodule
+```
 
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
+# UPCOUNTER:
+![241630935-5aeccff0-1ce5-4410-ae43-6ce37d9e25cf](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/5e4a5bb4-566f-4b44-b4d2-b2b186e106bc)
 
-
-
-
-
-
-
+# DOWNCOUNTER:
+![241634713-ab165f81-0fcb-4223-a1db-7abf765093e1](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/8d667337-31a6-4d65-abbe-e57c41116037)
 
 
 ### TIMING DIGRAMS FOR COUNTER  
+# UPCOUNTER:
+![241630594-a6d09728-2548-4dfb-807e-228cd3add169](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/3c0925be-632c-4fda-85c8-05a6f478bd3a)
 
-
-
+# DOWNCOUNTER:
+![241634545-b02dc6e9-93cc-4d7b-947b-61fafe739c1a](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/dfb2ba0c-d2e7-4c66-b963-b93494a6d37e)
 
 
 ### TRUTH TABLE 
+# Upcounter:
+![241686430-d402e02f-9271-4c02-9567-98da27b0c25e](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/f9d77c0f-a2a9-4653-a5d2-21c7ca98dc18)
+
+# Downcounter:
+![241689253-eb81454c-2f0a-40f8-a3b6-48a25970318f](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/5d25cf06-6b4f-4b61-a8e7-ef80db722b6c)
 
 
-
-
-
-
-### RESULTS 
+### RESULTS:
+Thus,The 4-bit up and down counter is implemented successfully.

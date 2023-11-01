@@ -59,51 +59,56 @@ RegisterNumber: 212222230108
 
 ## UPCOUNTER:
 ```
-module uc(input clk,input reset,output[0:3]counter);
-reg[0:3] counter_up;
-always@(posedge clk or posedge reset)
+module uc(clk,A);
+input clk;
+output reg [3:0]A;
+always@(posedge clk)
 begin
-if(reset)
-counter_up<=4'd0;
-else
-counter_up<=counter_up+4'd1;
+A[3]=((A[2]&A[1])&A[0])^A[3];
+A[2]=(A[1]&A[0])^A[2];
+A[1]=(A[0]^A[1]);
+A[0]=1^A[0];
 end
-assign counter=counter_up;
 endmodule
 ```
 
 ## DOWNCOUNTER:
 ```
-module dc(input clk,input reset,output[0:3]counter);
-reg[0:3] counter_down;
-always@(posedge clk or posedge reset)
+module dc(clk,A);
+input clk;
+output reg [3:0]A;
+always @(posedge clk)
 begin
-if(reset)
-counter_down<=4'd0;
-else
-counter_down<=counter_down-4'd1;
+A[3]=((~A[2])&(~A[1])&(~A[0]))^A[3];
+A[2]=((~A[1])&(~A[0]))^A[2];
+A[1]=(~A[0])^A[1];
+A[0]=1^A[0];
 end
-assign counter=counter_down;
 endmodule
+
 ```
 
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
 # UPCOUNTER:
-![exp06 de](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/c1e81b7c-3c24-4886-9841-cd0d5a1058ee)
+![245136627-0a4b5a96-c4d0-4a3d-a501-4d57d46f37b8](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/1214d605-8b18-4b2e-892e-278e7701c19c)
+
 
 
 # DOWNCOUNTER:
-![exp06de down](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/035e3b84-11e9-41cd-b8ef-23e319275c7f)
+![245136699-692e0239-810e-40fe-85d4-8753d18abb66](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/69375c5b-2e44-46ba-b425-14b6bda31256)
+
 
 
 
 ### TIMING DIGRAMS FOR COUNTER  
 # UPCOUNTER:
-![time ex06up](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/814d22f9-684f-40e5-8a08-e0a805088683)
+![245136866-97556c87-e03f-4dc5-b1a5-e9c7cfe05365](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/01c2090c-f034-4b7e-a3c9-eba2d978a67e)
+
 
 
 # DOWNCOUNTER:
-![timeex06down](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/4d1f5602-58b6-4fe6-ae51-8d4a53440620)
+![245136920-f4328c29-280a-4d61-a943-c65419b9530e](https://github.com/Praveenkumar2004-dev/Exp-7-Synchornous-counters-/assets/119559827/3b003fc5-ef3a-4900-8c97-6f9271283481)
+
 
 
 
